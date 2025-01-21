@@ -1,0 +1,219 @@
+.messages-main-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 350px 1fr;
+    grid-template-areas: "aside content";
+}
+
+.messages-main-container .messages-aside {
+    grid-area: aside;
+    display: grid;
+    grid-template-areas: "title" "elements";
+    grid-template-rows: 100px 1fr; 
+}
+.messages-main-container .messages-aside .title {
+    grid-area: title;
+    justify-self: center;
+    align-self: center;
+}
+
+.messages-main-container .messages-aside .chat-list-items {
+    grid-area: elements;
+    border-top: 1px solid  #d1d5db;
+}
+.messages-content {
+    grid-area: content;
+    display: grid;
+    border-left: 1px solid  #d1d5db;
+    grid-template-areas: "contact-preview" "elements";
+    grid-template-rows: 100px 1fr; 
+}
+
+.messages-content .contact-preview {
+    grid-area: contact-preview;
+    text-decoration: none;
+    display: grid;
+    height: fit-content;
+    align-self: center;
+    margin: 10px;
+    grid-template-columns: 80px 0.8fr;
+    grid-template-areas: "picture name";
+}
+
+.messages-content .contact-preview .name {
+    grid-area: name;
+    font-size: 20px;
+    margin-top: 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.messages-content .contact-preview .picture {
+    grid-area: picture;
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    justify-self: center;
+    border-radius: 50%;
+}
+.messages-content .messages-area {
+    border-top: 1px solid  #d1d5db;
+    background: #e9ecef;
+    display: grid;
+    grid-template-rows: 1fr 90px;
+    grid-template-areas: "content" "input";
+}
+
+.messages-content .messages-area .content {
+    grid-area: content;
+    display: flex;
+}
+
+.messages-content .messages-area .input {
+    grid-area: input;
+    display: flex;
+    background: white;
+    padding: 20px;
+}
+.messages-content .messages-area .input .text-input {
+    width: 100%;
+    height: 100%;
+    background: #e9ecef;
+    scrollbar-width: thin;
+    border-radius: 20px;
+    border: none;
+    padding-left: 20px;
+    resize: none;
+}
+.messages-content .messages-area .input .send {
+    margin-left: 10px;
+    border-radius: 50%;
+    border: none;
+    background: #319EF6;
+    height: 50px;
+    width: 50px;
+}
+.messages-content .messages-area .input .send:hover {
+    background: rgba(39, 128, 216, 1);
+    transition: color 0.3s ease;
+}
+.messages-content .messages-area .input .send-logo {
+    height: 40px;
+    width: 40px;
+}
+.chat-list-item {
+    text-decoration: none;
+    display: grid;
+    width: 90%;
+    justify-self: center;
+    height: fit-content;
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    grid-template-rows: 50px 30px;
+    grid-template-columns: 80px 0.8fr 30px;
+    grid-template-areas: "picture name last-online-time" 
+        "picture last-message last-online-time";
+}
+
+.chat-list-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transition:  0.3s ease;
+}
+.chat-list-item .picture {
+    grid-area: picture;
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    justify-self: center;
+    border-radius: 50%;
+}
+
+.chat-list-item .name {
+    grid-area: name;
+    font-size: 20px;
+    margin-top: 10px;
+    color: black;
+    font-weight: bold;
+}
+.chat-list-item .last-online-time {
+    grid-area: last-online-time;
+    margin-top: 14px;
+    color: gray;
+}
+.chat-list-item .last-message {
+    display: flex;
+    grid-area: last-message;
+    font-size: 18px;
+    margin-bottom: 20px;
+    align-items: center;
+    color: gray;
+}
+
+.message-container {
+    display: flex;
+    gap: 12px;
+    padding: 8px;
+    background: #e9ecef;
+}
+
+.message-container.outgoing {
+    flex-direction: row-reverse;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sender-name {
+    font-size: 14px;
+    color: #666;
+}
+
+.message-bubble {
+    position: relative;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    max-width: 400px;
+}
+
+.outgoing .message-bubble {
+    background: #0084ff;
+    color: white;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 4px;
+}
+
+.message-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.timestamp {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.outgoing .timestamp {
+    color: rgba(255, 255, 255, 0.8);
+}
