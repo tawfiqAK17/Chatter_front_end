@@ -16,6 +16,7 @@
     grid-area: title;
     justify-self: center;
     align-self: center;
+    color: #319EF6;
 }
 
 .messages-main-container .messages-aside .chat-list-items {

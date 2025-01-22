@@ -4,9 +4,9 @@ function MainLayout() {
     return (
         <div className="main-layout">
             <aside className='aside'>
-                <div className="logo"><img src='../../../public/logo.png' alt='logo' /></div>
+                <div className="logo"><img src='/logo.png' alt='logo' /></div>
                 <div className="elements">
-                    <AsideElement icon="../../../public/message.svg" label="Messages" destination_path="/main/messages"></AsideElement>
+                    <AsideElement icon="/message.svg" label="Messages" destination_path="/main/messages"></AsideElement>
                 </div>
                 <User />
             </aside>
@@ -28,7 +28,7 @@ function AsideElement({ icon, label, destination_path }) {
 function User() {
     return (
         <NavLink className="user" to="/main/account">
-            <img className="profile-picture" src='../../../public/user.jpg'/>            
+            <img className="profile-picture" src='/user.jpg'/>            
             <p className="user-name">Name</p>
             <p className="logout">Logout</p>
         </NavLink>

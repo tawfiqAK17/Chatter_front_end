@@ -15,7 +15,7 @@ function Messages() {
             </aside>
             <div className="messages-content">
                 <div className="contact-preview">
-                    <img className="picture" src='../../../public/user.jpg'/>            
+                    <img className="picture" src='/user.jpg'/>            
                     <p className="name">name</p>
                 </div>
                 <MessagesArea />
@@ -27,7 +27,7 @@ function Messages() {
 function ChatListItem() {
     return(
         <NavLink className="chat-list-item">
-            <img className="picture" src='../../../public/user.jpg'/>            
+            <img className="picture" src='/user.jpg'/>            
             <p className="name">name</p>
             <p className="last-message">hello</p>
             <p className="last-online-time">10:00</p>
@@ -43,7 +43,7 @@ function MessagesArea() {
                     message="Guyss tuktur depan kkantin ke japur!"
                     timestamp="05:05 PM"
                     senderName="Mas Happy"
-                    avatarUrl="../../../public/user.jpg"
+                    avatarUrl="/user.jpg"
                     isOutgoing={false}
                 />
                 <ChatMessage
@@ -54,7 +54,7 @@ function MessagesArea() {
             </div>
             <div className='input'>
                 <textarea className="text-input" type='text' placeholder="type a message"/>
-                <button className="send"><img className="send-logo" src="../../../public/send.svg"/></button>
+                <button className="send"><img className="send-logo" src="/send.svg"/></button>
             </div>
         </div>
     )

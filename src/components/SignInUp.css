@@ -34,6 +34,8 @@
 .sign-in-up-container .logo {
     grid-area: logo;
     justify-self: center;
+    width: 200px;
+    margin-top: 20px;
 }
 
 .sign-in-up-container label {
