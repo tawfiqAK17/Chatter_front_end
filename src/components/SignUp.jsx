@@ -40,7 +40,9 @@ function SignUp() {
 async function add_user(document) {
     const user_name = document.getElementById('user-name');
     const password = document.getElementById('password');
+    const email = document.getElementById('email');
     const password_check = document.getElementById('password-check');
+    
     if (password.value !== password_check.value) {
         document.getElementById('password-mismatch').className = 'incorrect-input';
         return false;
@@ -50,7 +52,11 @@ async function add_user(document) {
         headers: {
             'content-type' : 'application/json',
         },
-        body: JSON.stringify({name: user_name.value, password: password.value}),
+        body: JSON.stringify({
+            name: user_name.value, 
+            email: email.value,
+            password: password.value
+        }),
     })
 
     const respons_text = await respons.text();  
