@@ -2,6 +2,7 @@ import MainLayout from "../components/mainPage/MainLayout";
 import Messages from "../components/mainPage/pages/Messages";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
+import ProtectedRout from "./protected_route";
 
 export const routesData = [
     {
@@ -16,7 +17,7 @@ export const routesData = [
     },
     {
         path: '/main',
-        element: <MainLayout />,
+        element: <ProtectedRout child={ <MainLayout /> }/>,
         title: "main",
         children: [
             {

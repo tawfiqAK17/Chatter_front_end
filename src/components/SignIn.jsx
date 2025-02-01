@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './SignInUp.css'
 function SignIn() {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ function SignIn() {
             <form onSubmit={async (e) => {
                 e.preventDefault(); // Prevent form submission
                 const auth = await user_auth(document);
-                if (auth) {
+                if (auth === true) {
                     navigate('/main/messages');
                 }
             }}>
@@ -41,18 +42,21 @@ async function user_auth(document) {
         name: name,
         password: password 
     }
-    const respons = await fetch(`${server_url}/sign-in`, {
-        method: 'POST',
-        headers: {
-            'content-type' : 'application/json',
-        },
-        body: JSON.stringify(payload),
-    })
-    const respons_text = await respons.text();
-    if ( respons_text === 'authenticated') {
-        return true;
+    try{
+        const response = await axios.post(`${server_url}/sign-in`, payload, {
+            withCredentials: true
+        });
+        const response_body = response.data;
+        if ( response_body.message === 'authenticated') {
+            return true;
+        }
+    } catch (err) {
+        if (err.response.data.message === 'authentication failed') {
+            document.getElementById('authentication-failed').className = 'incorrect-input'; // show to the user that some thing is wrong with his input
+            return false;
+        } else {
+            console.log(err);
+        }
     }
-    document.getElementById('authentication-failed').className = 'incorrect-input'; // show to the user that some thing is wrong with his input
-    return false;
 }
 export default SignIn;

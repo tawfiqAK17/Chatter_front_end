@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './SignInUp.css'
+import axios from 'axios';
 function SignUp() {
     const navigate = useNavigate()
     return(
@@ -9,7 +10,7 @@ function SignUp() {
                 <form onSubmit={async (e) => {
                     e.preventDefault(); // Prevent form submission
                     const auth = await add_user(document);
-                    if (auth) {
+                    if (auth === true) {
                         navigate('/main/messages');
                     }
                 }}>
@@ -42,29 +43,27 @@ async function add_user(document) {
     const password = document.getElementById('password');
     const email = document.getElementById('email');
     const password_check = document.getElementById('password-check');
-    
+
     if (password.value !== password_check.value) {
         document.getElementById('password-mismatch').className = 'incorrect-input';
         return false;
     }
-    const respons = await fetch('http://localhost:5000/sign-up', {
-        method: 'POST',
-        headers: {
-            'content-type' : 'application/json',
-        },
-        body: JSON.stringify({
+    try {
+        await axios.post('http://localhost:5000/sign-up', {
             name: user_name.value, 
             email: email.value,
             password: password.value
-        }),
-    })
-
-    const respons_text = await respons.text();  
-    
-    if (respons_text === 'taken user name') {
-        document.getElementById('taken-user-name').className = 'incorrect-input';
-        return false;
+        }, {
+                withCredentials: true
+            }
+        )
+        return true;
+    } catch (err) {
+        if (err.response.data.message === 'taken user name') {
+            document.getElementById('taken-user-name').className = 'incorrect-input';
+            return false;
+        }
     }
-    return true;
 }
+
 export default SignUp;
