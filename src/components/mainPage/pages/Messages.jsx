@@ -1,6 +1,24 @@
 import { NavLink } from 'react-router-dom';
 import './Messages.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useSocket } from '../../SocketContext';
+
 function Messages() {
+    const [users, setUsers] = useState([]);
+    useEffect( () => {
+        const get_users = async () => {
+            try {
+                const res = await axios.get(import.meta.env.VITE_SERVER_URL + '/user/get-users', {
+                    withCredentials: true
+                })
+                setUsers(res.data.users);
+            } catch (err) {
+                 console.log(err);
+            }
+        }
+        get_users();
+    }, [])
     return (
         <div className="messages-main-container">
             <aside className="messages-aside">
@@ -8,9 +26,9 @@ function Messages() {
                     <h1>Messages</h1>
                 </div>
                 <div className="chat-list-items">
-                    <ChatListItem />
-                    <ChatListItem />
-                    <ChatListItem />
+                    {
+                        users.map(user => {return <ChatListItem key={user._id} user={user}/>})
+                    }
                 </div>
             </aside>
             <div className="messages-content">
@@ -24,18 +42,27 @@ function Messages() {
     )
 }
 
-function ChatListItem() {
+function ChatListItem({ user }) {
     return(
-        <NavLink className="chat-list-item">
+        <NavLink className="chat-list-item hover">
             <img className="picture" src='/user.jpg'/>            
-            <p className="name">name</p>
+            <p className="name">{user.name}</p>
             <p className="last-message">hello</p>
-            <p className="last-online-time">10:00</p>
+            <p className="last-online-time">10:00 pm</p>
         </NavLink>
     )
 }
 
 function MessagesArea() {
+    // using the socket provided by the SocketContext
+    const socket = useSocket();     
+
+    const sendMessage = () => {
+        if (socket && socket.connected) {
+            const msg = document.getElementById('message-input').value;
+            socket.emit('msg', msg);
+        } 
+    };
     return (
         <div className="messages-area">
             <div className="messages">
@@ -53,8 +80,8 @@ function MessagesArea() {
                 />
             </div>
             <div className='input'>
-                <textarea className="text-input" type='text' placeholder="type a message"/>
-                <button className="send"><img className="send-logo" src="/send.svg"/></button>
+                <textarea className="text-input" id='message-input' type='text' placeholder="type a message"/>
+                <button className="send" onClick={ sendMessage }><img className="send-logo" src="/send.svg"/></button>
             </div>
         </div>
     )

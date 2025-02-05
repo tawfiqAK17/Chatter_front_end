@@ -14,9 +14,11 @@
 }
 .messages-main-container .messages-aside .title {
     grid-area: title;
+    display: grid;
+    color: #319EF6;
+    font-size: 40px;
     justify-self: center;
     align-self: center;
-    color: #319EF6;
 }
 
 .messages-main-container .messages-aside .chat-list-items {
@@ -106,19 +108,19 @@
 .chat-list-item {
     text-decoration: none;
     display: grid;
-    width: 90%;
+    width: 100%;
     justify-self: center;
     height: fit-content;
     margin: 10px;
     margin-top: 20px;
     border-radius: 20px;
     grid-template-rows: 50px 30px;
-    grid-template-columns: 80px 0.8fr 30px;
+    grid-template-columns: 80px 0.8fr 80px;
     grid-template-areas: "picture name last-online-time" 
         "picture last-message last-online-time";
 }
 
-.chat-list-item:hover {
+.hover:hover {
     background: rgba(0, 0, 0, 0.1);
     transition:  0.3s ease;
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SocketProvider } from "../components/SocketContext";
 
 function ProtectedRout({ child }) {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ function ProtectedRout({ child }) {
     useEffect(() => {
         const verifyAuth = async () => {
             const server_url = import.meta.env.VITE_SERVER_URL;
-            const res = await axios.post(server_url + '/check-auth', {
+            const res = await axios.post(server_url + '/check-auth', {}, {
                 withCredentials: true
             });
             if(res.data.isAuth === true) {
@@ -27,7 +28,11 @@ function ProtectedRout({ child }) {
     }, [])
     
     if (isAuth) {
-        return child;
+        return (
+            <SocketProvider>
+                {child}
+            </SocketProvider>
+        )
     }
 }
 
