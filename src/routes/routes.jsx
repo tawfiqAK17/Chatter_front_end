@@ -27,7 +27,12 @@ export const routesData = [
             },
             {
                 path: 'messages',
-                element: <Messages />,
+                element: <Messages withId={ false }/>,
+                title: "messages",
+            },
+            {
+                path: 'messages/:id',
+                element: <Messages withId={ true }/>,
                 title: "messages",
             },
             {

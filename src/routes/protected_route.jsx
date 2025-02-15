@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SocketProvider } from "../components/SocketContext";
 
 function ProtectedRout({ child }) {
     const navigate = useNavigate();
@@ -29,9 +28,7 @@ function ProtectedRout({ child }) {
     
     if (isAuth) {
         return (
-            <SocketProvider>
-                {child}
-            </SocketProvider>
+            child
         )
     }
 }

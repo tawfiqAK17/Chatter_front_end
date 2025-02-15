@@ -49,14 +49,13 @@ async function add_user(document) {
         return false;
     }
     try {
-        await axios.post('http://localhost:5000/sign-up', {
+        await axios.post('/sign-up', {
             name: user_name.value, 
             email: email.value,
             password: password.value
         }, {
-                withCredentials: true
-            }
-        )
+                withCredentials: true,
+            });
         return true;
     } catch (err) {
         if (err.response.data.message === 'taken user name') {

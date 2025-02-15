@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './SignInUp.css'
+import axios from 'axios';
 function SignIn() {
     const navigate = useNavigate();
     return(
@@ -35,7 +35,6 @@ function SignIn() {
 }
 
 async function user_auth(document) {
-    const server_url = import.meta.env.VITE_SERVER_URL;
     const name = document.getElementById('user-name').value;
     const password = document.getElementById('password').value;
     const payload = {
@@ -43,14 +42,16 @@ async function user_auth(document) {
         password: password 
     }
     try{
-        const response = await axios.post(`${server_url}/sign-in`, payload, {
-            withCredentials: true
-        });
+        const response = await axios.post('/sign-in', payload, {
+            withCredentials: true,
+        }); 
         const response_body = response.data;
         if ( response_body.message === 'authenticated') {
+            sessionStorage.setItem('jwt', response_body.jwt);
             return true;
         }
     } catch (err) {
+        console.log(err);
         if (err.response.data.message === 'authentication failed') {
             document.getElementById('authentication-failed').className = 'incorrect-input'; // show to the user that some thing is wrong with his input
             return false;

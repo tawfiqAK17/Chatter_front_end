@@ -27,6 +27,7 @@
 }
 .messages-content {
     grid-area: content;
+    background-color: #e9ecef;
     display: grid;
     border-left: 1px solid  #d1d5db;
     grid-template-areas: "contact-preview" "elements";
@@ -36,10 +37,11 @@
 .messages-content .contact-preview {
     grid-area: contact-preview;
     text-decoration: none;
+    background-color: white;
     display: grid;
-    height: fit-content;
+    height: 100%;
     align-self: center;
-    margin: 10px;
+    padding: 10px;
     grid-template-columns: 80px 0.8fr;
     grid-template-areas: "picture name";
 }
@@ -47,6 +49,7 @@
 .messages-content .contact-preview .name {
     grid-area: name;
     font-size: 20px;
+    align-self: center;
     margin-top: 10px;
     color: black;
     font-weight: bold;
@@ -108,16 +111,19 @@
 .chat-list-item {
     text-decoration: none;
     display: grid;
-    width: 100%;
+    width: 94%;
     justify-self: center;
     height: fit-content;
     margin: 10px;
     margin-top: 20px;
     border-radius: 20px;
     grid-template-rows: 50px 30px;
-    grid-template-columns: 80px 0.8fr 80px;
+    grid-template-columns: 80px 0.6fr 80px;
     grid-template-areas: "picture name last-online-time" 
         "picture last-message last-online-time";
+}
+.active-chat-list-item {
+    background-color: violet;
 }
 
 .hover:hover {
