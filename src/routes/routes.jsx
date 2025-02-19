@@ -1,4 +1,5 @@
 import MainLayout from "../components/mainPage/MainLayout";
+import { Communities } from "../components/mainPage/pages/Communities";
 import Messages from "../components/mainPage/pages/Messages";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
@@ -36,9 +37,9 @@ export const routesData = [
                 title: "messages",
             },
             {
-                path: 'community',
-                element: <MainLayout />,
-                title: "community",
+                path: 'communities',
+                element: <Communities withId={ true } />,
+                title: "communities",
             },
             {
                 path: 'calls',
