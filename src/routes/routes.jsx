@@ -1,8 +1,7 @@
-import MainLayout from "../components/mainPage/MainLayout";
-import { Communities } from "../components/mainPage/pages/Communities";
-import Messages from "../components/mainPage/pages/Messages";
-import SignIn from "../components/SignIn";
-import SignUp from "../components/SignUp";
+import MainLayout from "../pages/MainLayout";
+import Messages from "../pages/Messages";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
 import ProtectedRout from "./protected_route";
 
 export const routesData = [
@@ -18,7 +17,7 @@ export const routesData = [
     },
     {
         path: '/main',
-        element: <ProtectedRout child={ <MainLayout /> }/>,
+        element: <ProtectedRout children={ <MainLayout /> }/>,
         title: "main",
         children: [
             {
@@ -38,7 +37,7 @@ export const routesData = [
             },
             {
                 path: 'communities',
-                element: <Communities withId={ true } />,
+                element: <MainLayout />,
                 title: "communities",
             },
             {

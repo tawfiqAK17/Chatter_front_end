@@ -58,6 +58,10 @@
 }
 .aside-element-icon {
     grid-area: icon;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 .aside-element-label {
@@ -69,7 +73,6 @@
 
 .active-aside-element {
     background: #319EF6;
-    color: #ffffff;
 }
 .active-aside-element:hover {
     background: rgba(39, 128, 216, 1);

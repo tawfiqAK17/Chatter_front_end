@@ -1,11 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { io } from "socket.io-client";
 import './MainLayout.css'
+import { userContext } from '../routes/protected_route';
 
 export const socketContext = createContext();
 
 function MainLayout() {
+    // get the user from the userContext
+    const user = useContext(userContext);
     // connecting the websocket to the server
     const [socket, setSocket] = useState( io(import.meta.env.VITE_SERVER_URL,
         {
@@ -30,7 +33,7 @@ function MainLayout() {
                 <div className="elements">
                     <AsideElement icon="/message.svg" label="Messages" destination_path="/main/messages"></AsideElement>
                 </div>
-                <User />
+                <User userName={ user.name }/>
             </aside>
             <div className="content">
                 <socketContext.Provider value={ socket }>
@@ -49,11 +52,11 @@ function AsideElement({ icon, label, destination_path }) {
    )
 }
 
-function User() {
+function User({ userName }) {
     return (
         <NavLink className="user" to="/main/account">
             <img className="profile-picture" src='/user.jpg'/>            
-            <p className="user-name">Name</p>
+            <p className="user-name">{ userName }</p>
             <p className="logout">Logout</p>
         </NavLink>
     )
