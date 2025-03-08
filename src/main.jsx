@@ -1,16 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { routesData } from './routes/routes'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
 import './index.css'
-import 'bootstrap/dist/css/bootstrap.css'
-import axios from 'axios'
 
-// In your app's entry point or where you configure axios
-axios.defaults.baseURL = 'http://localhost:5000'; 
-
-createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <RouterProvider router={createBrowserRouter(routesData)} />
-    </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 )
