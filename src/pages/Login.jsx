@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import axios from 'axios';
+import Axios from '../axios.config';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaComment } from 'react-icons/fa';
 
@@ -122,12 +122,11 @@ async function user_auth( email, password ) {
         password: password 
     }
     try{
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/sign-in', payload, {
-            withCredentials: true,
-        }); 
+        const res = await Axios.post('/sign-in', payload); 
         if ( res.status === 200 ) {
-            sessionStorage.setItem('jwt', res.data.jwt);
-            return res.data.authenticated;
+            // store the authentication token in the local storage
+            sessionnStorage.setItem('jwt', JSON.stringify(res.data.jwt));
+            return res.data.jwt ? true : false;
         }
     } catch (err) {
         console.log(err);

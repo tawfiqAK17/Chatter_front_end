@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import Axios from '../axios.config';
 import Sidebar from '../components/Sidebar';
 import ChatHeader from '../components/ChatHeader';
 import MessageList from '../components/MessageList';
@@ -14,9 +14,7 @@ const Messages = () => {
     useEffect(() => {
         const get_users = async () => {
             try {
-                const res = await axios.get(import.meta.env.VITE_SERVER_URL + '/user/get-users', {
-                    withCredentials: true,
-                });
+                const res = await Axios.get('/user/get-users');
                 setContacts(res.data.users);
             } catch (err) {
                 console.log(err);
@@ -24,10 +22,18 @@ const Messages = () => {
         }
         get_users();
     }, []);
+    ;
+
+    // make sure the active contact is the same before the refresh
+    useEffect(() => {
+        const savedAciveContact = sessionStorage.getItem('activeContact');
+        if (savedAciveContact) {
+            setActiveContact(contacts.find(constact => constact._id === JSON.parse(savedAciveContact)._id));
+        }
+    }, [contacts])
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-
+    }
     return (
         <>
             {/* Contacts Sidebar - hidden on mobile unless toggled */}

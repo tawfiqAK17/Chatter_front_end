@@ -1,6 +1,6 @@
+import Axios from '../axios.config';
 import { format } from 'date-fns';
 import { useContext, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { userContext } from '../layouts/MainLayout';
 import { socketContext } from '../layouts/MainLayout';
 
@@ -29,10 +29,8 @@ const MessageList = ( {messages, setMessages, activeContact} ) => {
         const get_messages = async () => {
             try {
                 // getting all the messages between the user and his friend
-                const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/messages/get-messages',  
-                    { receiverId: activeContact._id },
-                    { withCredentials: true }
-                );
+                const res = await Axios.post('/messages/get-messages',  
+                    { receiverId: activeContact._id });
                 setMessages(res.data.messages);
             } catch (err) {
                 console.log(err);
@@ -40,17 +38,6 @@ const MessageList = ( {messages, setMessages, activeContact} ) => {
         }
         get_messages();
     }, [activeContact]);
-
-
-
-
-
-
-
-
-
-
-
 
     const messagesEndRef = useRef(null);
     const scrollToBottom = () => {

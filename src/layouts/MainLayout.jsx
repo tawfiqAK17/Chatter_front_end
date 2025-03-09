@@ -2,8 +2,7 @@ import { FaComment, FaUsers, FaChartBar, FaCog, FaSignOutAlt } from 'react-icons
 import { NavLink, Outlet } from 'react-router-dom';
 import { createContext, useState, useEffect } from "react";
 import { io } from "socket.io-client";
-import axios from 'axios';
-
+import Axios from '../axios.config';
 
 export const socketContext = createContext();
 
@@ -18,15 +17,9 @@ const MainLayout = () => {
 
     useEffect(() => {
         const getUser = async () => {
-            setSocket(io(import.meta.env.VITE_SERVER_URL,
-                {
-                    transports: ["websocket"],
-                    withCredentials: true,
-                })
-            );
             try {
-                const res = await axios.get(import.meta.env.VITE_SERVER_URL + '/user/get-user', {
-                    withCredentials: true
+                const res = await Axios.get('/user/get-user', {
+                    
                 });
                 setUser(res.data.user);
             } catch (err) {
@@ -34,11 +27,15 @@ const MainLayout = () => {
             }
         }
         // after each refresh the socket will be reinitialized if it is not connected any more
-        if (socket && !socket.connected) {
-            setSocket(io(import.meta.env.VITE_SERVER_URL, {
-                transports: ["websocket"],
-                withCredentials: true,
-            }));
+        if (!socket || !socket.connected) {
+            setSocket(io(import.meta.env.VITE_SERVER_URL,
+                {
+                    auth: {
+                        token: "Baerer " + sessionStorage.getItem('jwt').replaceAll('"', ''),
+                    },
+                    transports: ["websocket"],
+                })
+            );
         }
         // fetch the user
         getUser();
@@ -46,9 +43,9 @@ const MainLayout = () => {
 
     const navItems = [
         {
-            id: 'messages',
-            path: '/messages',
-            label: 'Messages',
+            id: 'chat',
+            path: '/chat',
+            label: 'Chat',
             icon: <FaComment />,
         },
         {

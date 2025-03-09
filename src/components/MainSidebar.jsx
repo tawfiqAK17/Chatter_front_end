@@ -3,8 +3,8 @@ import { FaComment, FaUsers, FaChartBar, FaCog, FaSignOutAlt } from 'react-icons
 const MainSidebar = ({ activeSection, setActiveSection }) => {
   const navItems = [
     {
-      id: 'messages',
-      label: 'Messages',
+      id: 'chat',
+      label: 'Chat',
       icon: <FaComment />,
     },
     {
@@ -21,7 +21,6 @@ const MainSidebar = ({ activeSection, setActiveSection }) => {
 
   return (
     <div className="w-20 bg-primary flex flex-col items-center py-6 shadow-md">
-      {/* App Logo */}
       
       {/* Navigation Items */}
       <div className="flex-1 flex flex-col items-center space-y-8">
