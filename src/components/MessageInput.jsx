@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaPaperPlane, FaSmile, FaPaperclip } from 'react-icons/fa';
 import { socketContext } from '../layouts/MainLayout';
 
-const MessageInput = ({ messages, setMessages, setContacts, activeContact }) => {
+const MessageInput = ({ setContacts, activeContact }) => {
 
     const [message, setMessage] = useState('');
 
@@ -31,11 +31,11 @@ const MessageInput = ({ messages, setMessages, setContacts, activeContact }) => 
     };
 
     return (
-        <div className="bg-white border-t p-3">
+        <div className="bg-white dark:bg-darkInput-background border-t dark:border-darkInput-border p-3">
             <form onSubmit={handleSubmit} className="flex items-center">
                 <button
                     type="button"
-                    className="p-2 rounded-full text-gray-500 hover:text-gray-700 focus:outline-none"
+                    className="p-2 rounded-full text-gray-500 dark:text-darkText-secondary hover:text-gray-700 dark:hover:text-darkText-primary focus:outline-none"
                 >
                     <FaPaperclip size={20} />
                 </button>
@@ -43,21 +43,21 @@ const MessageInput = ({ messages, setMessages, setContacts, activeContact }) => 
                 <input
                     type="text"
                     placeholder="Type a message..."
-                    className="flex-1 border rounded-full py-2 px-4 mx-2 focus:outline-none focus:ring-2 focus:ring-secondary"
+                    className="flex-1 border dark:border-darkInput-border rounded-full py-2 px-4 mx-2 dark:bg-primary-light dark:text-darkText-primary focus:outline-none focus:ring-2 focus:ring-secondary dark:focus:ring-darkInput-border"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
 
                 <button
                     type="button"
-                    className="p-2 rounded-full text-gray-500 hover:text-gray-700 focus:outline-none"
+                    className="p-2 rounded-full text-gray-500 dark:text-darkText-secondary hover:text-gray-700 dark:hover:text-darkText-primary focus:outline-none"
                 >
                     <FaSmile size={20} />
                 </button>
 
                 <button
                     type="submit"
-                    className="ml-1 p-2 bg-secondary text-white rounded-full hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-secondary"
+                    className="ml-1 p-2 bg-secondary text-white dark:text-darkText-secondary rounded-full hover:bg-secondary-dark dark:hover:bg-darkAccent-hover focus:outline-none focus:ring-2 focus:ring-secondary"
                     disabled={!message.trim()}
                 >
                     <FaPaperPlane size={16} />

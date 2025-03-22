@@ -70,14 +70,14 @@ const MessageList = ( {messages, setMessages, activeContact} ) => {
                         <div
                             className={`max-w-xs md:max-w-md lg:max-w-lg px-4 py-2 rounded-lg ${
 outgoing ?
-'bg-secondary text-white rounded-br-none'
-: 'bg-white text-gray-800 rounded-bl-none shadow'
+'bg-secondary dark:bg-darkMessage-user text-white dark:text-darkText-primary rounded-br-none'
+: 'bg-white dark:bg-darkMessage-contact text-gray-800 dark:text-darkText-primary rounded-bl-none shadow'
 }`}
                         >
                             <p>{message.content}</p>
                             <div
                                 className={`text-xs mt-1 ${
-outgoing ? 'text-blue-100' : 'text-gray-500'
+outgoing ? 'text-blue-100 dark:text-darkText-secondary' : 'text-gray-500 dark:text-darkText-secondary'
 }`}
                             >
                                 {formatMessageTime(message.time)}

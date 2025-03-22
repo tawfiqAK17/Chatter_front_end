@@ -2,10 +2,10 @@ import { FaBars, FaEllipsisV, FaPhone, FaVideo } from 'react-icons/fa';
 
 const ChatHeader = ({ contact, toggleMobileMenu }) => {
   return (
-    <div className="bg-white border-b p-3 flex items-center justify-between shadow-sm">
+    <div className="bg-white dark:bg-dark-primary border-b dark:border-darkInput-border p-3 flex items-center justify-between shadow-sm h-16">
       <div className="flex items-center">
         <button 
-          className="md:hidden mr-3 text-gray-500 hover:text-gray-700"
+          className="md:hidden mr-3 text-gray-500 dark:text-darkText-secondary hover:text-gray-700 dark:hover:text-darkText-primary"
           onClick={toggleMobileMenu}
         >
           <FaBars size={20} />
@@ -23,8 +23,8 @@ const ChatHeader = ({ contact, toggleMobileMenu }) => {
             )}
           </div>
           <div className="ml-3">
-            <h2 className="font-medium">{contact.name}</h2>
-            <p className="text-xs text-gray-500">
+            <h2 className="font-medium dark:text-darkText-primary">{contact.name}</h2>
+            <p className="text-xs text-gray-500 dark:text-darkText-secondary">
               {contact.online ? 'Online' : 'Offline'}
             </p>
           </div>
@@ -32,13 +32,13 @@ const ChatHeader = ({ contact, toggleMobileMenu }) => {
       </div>
       
       <div className="flex items-center space-x-3">
-        <button className="p-2 rounded-full hover:bg-gray-100 text-gray-600">
+        <button className="p-2 rounded-full dark:hover:text-darkText-primary text-gray-600">
           <FaPhone />
         </button>
-        <button className="p-2 rounded-full hover:bg-gray-100 text-gray-600">
+        <button className="p-2 rounded-full dark:hover:text-darkText-primary text-gray-600">
           <FaVideo />
         </button>
-        <button className="p-2 rounded-full hover:bg-gray-100 text-gray-600">
+        <button className="p-2 rounded-full dark:hover:text-darkText-primary text-gray-600">
           <FaEllipsisV />
         </button>
       </div>

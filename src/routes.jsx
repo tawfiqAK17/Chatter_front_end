@@ -4,6 +4,7 @@ import Communities from './pages/Communities';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Settings from './pages/Settings';
 
 const routes = [
     {
@@ -34,6 +35,10 @@ const routes = [
                 path: 'dashboard',
                 element: <Dashboard />
             },
+            {
+                path: 'settings',
+                element: <Settings />
+            }
         ]
     }
 ];

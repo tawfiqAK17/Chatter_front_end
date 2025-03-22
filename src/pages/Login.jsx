@@ -124,8 +124,8 @@ async function user_auth( email, password ) {
     try{
         const res = await Axios.post('/sign-in', payload); 
         if ( res.status === 200 ) {
-            // store the authentication token in the local storage
-            sessionnStorage.setItem('jwt', JSON.stringify(res.data.jwt));
+            // store the authentication token in the session storage
+            sessionStorage.setItem('jwt', JSON.stringify(res.data.jwt));
             return res.data.jwt ? true : false;
         }
     } catch (err) {

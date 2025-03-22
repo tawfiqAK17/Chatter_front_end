@@ -66,7 +66,7 @@ const MainLayout = () => {
         <socketContext.Provider value={socket}>
             <div className="flex h-screen bg-gray-100">
                 {/* Main Navigation Sidebar */}
-                <div className="w-20 bg-primary flex flex-col items-center py-6 shadow-md">
+                <div className="w-20 bg-primary dark:bg-darkSidebar-background flex flex-col items-center py-6 shadow-md">
                     {/* App Logo */}
                     <div className="mb-10">
                         <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
@@ -81,7 +81,7 @@ const MainLayout = () => {
                                 key={item.id}
                                 to={item.path}
                                 className={({ isActive }) => `w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 
-${isActive ? 'bg-secondary text-white' : 'text-gray-400 hover:text-white hover:bg-primary-light'} `
+${isActive ? 'bg-secondary text-white dark:bg-darkSidebar-activeItem' : 'text-gray-400 hover:text-white hover:bg-primary-light'} `
                                 }
                                 title={item.label}
                             >

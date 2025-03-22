@@ -27,9 +27,9 @@ const MainSidebar = ({ activeSection, setActiveSection }) => {
         {navItems.map((item) => (
           <button
             key={item.id}
-            className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-200 ${
+            className={`w-12 h-12  rounded-xl flex items-center justify-center transition-all duration-200 ${
               activeSection === item.id
-                ? 'bg-secondary text-white'
+                ? 'bg-secondary dark:bg-darkMessage-user text-white'
                 : 'text-gray-400 hover:text-white hover:bg-primary-light'
             }`}
             onClick={() => setActiveSection(item.id)}

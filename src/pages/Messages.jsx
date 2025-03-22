@@ -22,22 +22,23 @@ const Messages = () => {
         }
         get_users();
     }, []);
-    ;
-
-    // make sure the active contact is the same before the refresh
     useEffect(() => {
         const savedAciveContact = sessionStorage.getItem('activeContact');
         if (savedAciveContact) {
             setActiveContact(contacts.find(constact => constact._id === JSON.parse(savedAciveContact)._id));
         }
     }, [contacts])
+
+    // make sure the active contact is the same before the refresh
+    useEffect(() => {
+    }, [activeContact]);
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     }
     return (
         <>
             {/* Contacts Sidebar - hidden on mobile unless toggled */}
-            <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:block md:w-80 bg-white shadow-md z-10`}>
+            <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:block md:w-80 bg-white dark:bg-dark-primary shadow-md z-10`}>
                 <Sidebar 
                     contacts={contacts.map(contact => {
                         return {...contact, avatar: "", } 
@@ -58,7 +59,7 @@ const Messages = () => {
                         />
                 }
 
-                <div className="flex-1 overflow-hidden bg-gray-50 p-4">
+                <div className="flex-1 overflow-hidden bg-gray-50 dark:bg-dark-secondary p-4">
                     { activeContact &&
                         <MessageList 
                             messages={messages}
@@ -71,8 +72,6 @@ const Messages = () => {
 
                 { activeContact && 
                     <MessageInput 
-                        messages={messages}
-                        setMessages={setMessages}
                         activeContact={activeContact}
                         setContacts={setContacts}
                     />
