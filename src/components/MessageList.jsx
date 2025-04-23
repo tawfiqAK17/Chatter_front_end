@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { useContext, useEffect, useRef } from 'react';
 import { userContext } from '../layouts/MainLayout';
 import { socketContext } from '../layouts/MainLayout';
+import userImg from '../public/user.jpg'
 
 const MessageList = ( {messages, setMessages, activeContact} ) => {
     const formatMessageTime = (timestamp) => {
@@ -60,7 +61,7 @@ const MessageList = ( {messages, setMessages, activeContact} ) => {
                         {!outgoing && (
                             <div className="mr-2 flex-shrink-0">
                                 <img
-                                    src={activeContact.avatar}
+                                    src={userImg}
                                     alt={activeContact.name}
                                     className="w-8 h-8 rounded-full object-cover"
                                 />

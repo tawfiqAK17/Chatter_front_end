@@ -1,4 +1,5 @@
 import { FaBars, FaEllipsisV, FaPhone, FaVideo } from 'react-icons/fa';
+import userImg from '../public/user.jpg'
 
 const ChatHeader = ({ contact, toggleMobileMenu }) => {
   return (
@@ -14,7 +15,7 @@ const ChatHeader = ({ contact, toggleMobileMenu }) => {
         <div className="flex items-center">
           <div className="relative">
             <img
-              src={contact.avatar}
+              src={userImg}
               alt={contact.name}
               className="w-10 h-10 rounded-full object-cover"
             />

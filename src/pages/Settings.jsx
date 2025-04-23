@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
-import { FaBell, FaLock, FaPalette, FaUser } from 'react-icons/fa';
+import { FaPalette, FaUser } from 'react-icons/fa';
 import { userContext } from '../layouts/MainLayout';
 import ToggleButton from '../components/ToggleButton';
-import { document } from 'postcss';
+import userImg from '../public/user.jpg'
 
 const Settings = () => {
     const { user, setUser } = useContext(userContext);
@@ -42,7 +42,7 @@ const Settings = () => {
                     <div className="flex items-center mb-6">
                         <div className="relative">
                             <img
-                                src="https://randomuser.me/api/portraits/men/1.jpg"
+                                src={userImg}
                                 alt="Profile"
                                 className="w-20 h-20 rounded-full object-cover"
                             />

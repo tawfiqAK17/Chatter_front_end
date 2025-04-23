@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { FaSearch, FaTimes } from 'react-icons/fa';
+import userImg from '../public/user.jpg'
 
 const Sidebar = ({ contacts, activeContact, setActiveContact, closeMobileMenu }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -53,7 +54,7 @@ activeContact && activeContact._id === contact._id ? 'bg-blue-50 dark:bg-darkCha
                         >
                             <div className="relative">
                                 <img
-                                    src=""
+                                    src={userImg}
                                     alt={contact.name}
                                     className="w-12 h-12 rounded-full object-cover"
                                 />
