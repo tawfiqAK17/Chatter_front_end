@@ -1,0 +1,6 @@
+[submodule "Chatter_back_end"]
+	path = Chatter_back_end
+	url = git@github.com:tawfiqAK17/Chatter_back_end.git
+[submodule "Chatter_front_end"]
+	path = Chatter_front_end
+	url = git@github.com:tawfiqAK17/Chatter_front_end.git
